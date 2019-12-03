@@ -16,37 +16,43 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE IF EXISTS ONLY public.test DROP CONSTRAINT IF EXISTS test_pkey;
-ALTER TABLE IF EXISTS public.test ALTER COLUMN id DROP DEFAULT;
-DROP SEQUENCE IF EXISTS public.test_id_seq;
-DROP TABLE IF EXISTS public.test;
+ALTER TABLE IF EXISTS ONLY public.users_tickers DROP CONSTRAINT IF EXISTS users_tickers_users_id_fk;
+DROP INDEX IF EXISTS public.users_tickers_id_uindex;
+DROP INDEX IF EXISTS public.users_password_uindex;
+DROP INDEX IF EXISTS public.users_id_uindex;
+ALTER TABLE IF EXISTS ONLY public.users_tickers DROP CONSTRAINT IF EXISTS users_tickers_pk;
+ALTER TABLE IF EXISTS ONLY public.users DROP CONSTRAINT IF EXISTS users_pk;
+ALTER TABLE IF EXISTS public.users_tickers ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public.users ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE IF EXISTS public.users_tickers_id_seq;
+DROP TABLE IF EXISTS public.users_tickers;
+DROP SEQUENCE IF EXISTS public.users_id_seq;
+DROP TABLE IF EXISTS public.users;
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
 
 CREATE SCHEMA public;
 
 
-ALTER SCHEMA public OWNER TO postgres;
-
 --
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -57,23 +63,21 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: test; Type: TABLE; Schema: public; Owner: kovacsg
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.test (
+CREATE TABLE public.users (
     id integer NOT NULL,
-    num integer,
-    data character varying
+    password character varying NOT NULL,
+    last_login date
 );
 
 
-ALTER TABLE public.test OWNER TO kovacsg;
-
 --
--- Name: test_id_seq; Type: SEQUENCE; Schema: public; Owner: kovacsg
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.test_id_seq
+CREATE SEQUENCE public.users_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -82,35 +86,101 @@ CREATE SEQUENCE public.test_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.test_id_seq OWNER TO kovacsg;
-
 --
--- Name: test_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kovacsg
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.test_id_seq OWNED BY public.test.id;
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: test id; Type: DEFAULT; Schema: public; Owner: kovacsg
+-- Name: users_tickers; Type: TABLE; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.test ALTER COLUMN id SET DEFAULT nextval('public.test_id_seq'::regclass);
-
-
---
--- Name: test test_pkey; Type: CONSTRAINT; Schema: public; Owner: kovacsg
---
-
-ALTER TABLE ONLY public.test
-    ADD CONSTRAINT test_pkey PRIMARY KEY (id);
+CREATE TABLE public.users_tickers (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    ticker character varying NOT NULL
+);
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: users_tickers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-GRANT ALL ON SCHEMA public TO PUBLIC;
+CREATE SEQUENCE public.users_tickers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_tickers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_tickers_id_seq OWNED BY public.users_tickers.id;
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: users_tickers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_tickers ALTER COLUMN id SET DEFAULT nextval('public.users_tickers_id_seq'::regclass);
+
+
+--
+-- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pk PRIMARY KEY (id);
+
+
+--
+-- Name: users_tickers users_tickers_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_tickers
+    ADD CONSTRAINT users_tickers_pk PRIMARY KEY (id);
+
+
+--
+-- Name: users_id_uindex; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_id_uindex ON public.users USING btree (id);
+
+
+--
+-- Name: users_password_uindex; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_password_uindex ON public.users USING btree (password);
+
+
+--
+-- Name: users_tickers_id_uindex; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_tickers_id_uindex ON public.users_tickers USING btree (id);
+
+
+--
+-- Name: users_tickers users_tickers_users_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_tickers
+    ADD CONSTRAINT users_tickers_users_id_fk FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
