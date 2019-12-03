@@ -44,3 +44,13 @@ def connection_handler(function):
         return ret_value
 
     return wrapper
+
+
+@connection_handler
+def execute_query(cursor, query, params=None):
+    cursor.execute(query, params)
+
+    if query.strip().startswith('SELECT') \
+            or (query.strip().startswith('INSERT') and 'RETURNING' in query)\
+            or (query.strip().startswith('UPDATE') and 'RETURNING' in query):
+        return cursor.fetchall()
