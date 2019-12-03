@@ -17,6 +17,8 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 ALTER TABLE IF EXISTS ONLY public.users_tickers DROP CONSTRAINT IF EXISTS users_tickers_users_id_fk;
+DROP INDEX IF EXISTS public.users_username_uindex;
+DROP INDEX IF EXISTS public.users_tickers_name_uindex;
 DROP INDEX IF EXISTS public.users_tickers_id_uindex;
 DROP INDEX IF EXISTS public.users_password_uindex;
 DROP INDEX IF EXISTS public.users_id_uindex;
@@ -68,8 +70,8 @@ SET default_with_oids = false;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    password character varying NOT NULL,
-    last_login date
+    username character varying NOT NULL,
+    password character varying NOT NULL
 );
 
 
@@ -100,7 +102,8 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 CREATE TABLE public.users_tickers (
     id integer NOT NULL,
     user_id integer NOT NULL,
-    ticker character varying NOT NULL
+    ticker character varying NOT NULL,
+    name character varying NOT NULL
 );
 
 
@@ -173,6 +176,20 @@ CREATE UNIQUE INDEX users_password_uindex ON public.users USING btree (password)
 --
 
 CREATE UNIQUE INDEX users_tickers_id_uindex ON public.users_tickers USING btree (id);
+
+
+--
+-- Name: users_tickers_name_uindex; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_tickers_name_uindex ON public.users_tickers USING btree (name);
+
+
+--
+-- Name: users_username_uindex; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_username_uindex ON public.users USING btree (username);
 
 
 --
