@@ -8,8 +8,8 @@ import pytz
 watchlist = ['FB', 'TSLA', 'AMZN', 'AAPL', 'GOOGL']
 
 
-def get_quotes_for_main_page(user):
-    tickers = data_manager.get_tickers_by_user(user)
+def get_quotes_for_main_page(user_id):
+    tickers = data_manager.get_tickers_by_user(user_id)
     symbols = '%2C'.join([ticker['ticker'] for ticker in tickers])
 
     params = {
@@ -24,7 +24,9 @@ def get_quotes_for_main_page(user):
 
 def process_raw_quotes_data(data):
     processed_quotes = []
+
     for record in data:
+
         processed_quotes.append({
             'ticker': record["symbol"],
             'name': record["longName"],
