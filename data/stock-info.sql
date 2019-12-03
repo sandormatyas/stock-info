@@ -18,7 +18,6 @@ SET row_security = off;
 
 ALTER TABLE IF EXISTS ONLY public.users_tickers DROP CONSTRAINT IF EXISTS users_tickers_users_id_fk;
 DROP INDEX IF EXISTS public.users_username_uindex;
-DROP INDEX IF EXISTS public.users_tickers_name_uindex;
 DROP INDEX IF EXISTS public.users_tickers_id_uindex;
 DROP INDEX IF EXISTS public.users_password_uindex;
 DROP INDEX IF EXISTS public.users_id_uindex;
@@ -176,13 +175,6 @@ CREATE UNIQUE INDEX users_password_uindex ON public.users USING btree (password)
 --
 
 CREATE UNIQUE INDEX users_tickers_id_uindex ON public.users_tickers USING btree (id);
-
-
---
--- Name: users_tickers_name_uindex; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_tickers_name_uindex ON public.users_tickers USING btree (name);
 
 
 --
