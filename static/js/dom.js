@@ -12,24 +12,24 @@ function showMainTable() {
 
             //decide which arrow should we use
             if (row['trends']['longTermTrend'] === 'UP'){
-                row['trends']['longTermTrend'] = `<i class="fas fa-angle-double-up"></i>`
+                row['trends']['longTermTrend'] = "fas fa-angle-double-up"
             }
             else {
-                row['trends']['longTermTrend'] = `<i class="fas fa-angle-double-down"></i>`
+                row['trends']['longTermTrend'] = "fas fa-angle-double-down"
             }
 
             if (row['trends']['midTermTrend'] === 'UP'){
-                row['trends']['midTermTrend'] = `<i class="fas fa-angle-double-up"></i>`
+                row['trends']['midTermTrend'] = "fas fa-angle-double-up"
             }
             else {
-                row['trends']['midTermTrend'] = `<i class="fas fa-angle-double-down"></i>`
+                row['trends']['midTermTrend'] = "fas fa-angle-double-down"
             }
 
             if (row['trends']['shortTermTrend'] === 'UP'){
-                row['trends']['shortTermTrend'] = `<i class="fas fa-angle-double-up"></i>`
+                row['trends']['shortTermTrend'] = "fas fa-angle-double-up"
             }
             else {
-                row['trends']['shortTermTrend'] = `<i class="fas fa-angle-double-down"></i>`
+                row['trends']['shortTermTrend'] = "fas fa-angle-double-down"
             }
 
 
