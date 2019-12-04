@@ -13,7 +13,7 @@ def fetch_yahoo_fin(url_end, params=None):
         'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
         'x-rapidapi-key': os.environ.get('YAHOO_API_KEY')
     }
-    response = fetch(url, headers=headers, params=params).json()
+    response = fetch(url, headers=headers, params=params)
 
     return response
 
