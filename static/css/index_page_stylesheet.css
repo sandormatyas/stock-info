@@ -60,16 +60,20 @@ body {
 
 .fas.fa-angle-double-up {
     color: forestgreen;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .fas.fa-angle-double-down {
     color: red;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .time {
     font-size: small;
 }
-
-
+.nav-buttons {
+    margin: 10px 0
+}
+.nav-buttons {
+    text-align: right;
+}
