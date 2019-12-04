@@ -1,6 +1,7 @@
 import data_manager
 import datetime
 import bcrypt
+from flask import session
 
 
 def handle_register(user_data):
@@ -14,7 +15,9 @@ def handle_login(user_data):
     is_verified = verify_password(plain_text_password, hashed_password)
     if is_verified:
         timestamp = datetime.datetime.now().replace(microsecond=0)
-        data_manager.update_last_login(user_data['username'], timestamp)
+        user_id = data_manager.update_time_get_user_id(user_data['username'], timestamp)
+        session['username'] = user_data['username']
+        session['user_id'] = user_id
     return is_verified
 
 

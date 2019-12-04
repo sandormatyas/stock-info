@@ -21,8 +21,7 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     user_data = request.form.to_dict()
-    if user_methods.handle_login(user_data):
-        session['username'] = user_data['username']
+    user_methods.handle_login(user_data)
     return redirect('/')
 
 
@@ -30,6 +29,7 @@ def login():
 def logout():
     session.pop('username')
     return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

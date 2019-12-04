@@ -21,9 +21,22 @@ def get_hashed_password(cursor, username):
 
 
 @connection_db.connection_handler
-def update_last_login(cursor, username, time):
+def update_time_get_user_id(cursor, username, time):
     cursor.execute("""
         UPDATE users
         SET last_login = %(time)s
         WHERE username = %(username)s
+        RETURNING id
     """, {'time': time, 'username': username})
+    user_id = cursor.fetchone()
+    return user_id['id']
+
+
+@connection_db.connection_handler
+def get_existing_usernames(cursor):
+    cursor.execute("""
+        SELECT username
+        FROM users
+    """)
+    user_list = cursor.fetchall()
+    return user_list
