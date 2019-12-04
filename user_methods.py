@@ -1,4 +1,5 @@
 import data_manager
+import datetime
 import bcrypt
 
 
@@ -10,7 +11,12 @@ def handle_register(user_data):
 def handle_login(user_data):
     plain_text_password = user_data['password']
     hashed_password = data_manager.get_hashed_password(user_data['username'])
-    return verify_password(plain_text_password, hashed_password)
+    is_verified = verify_password(plain_text_password, hashed_password)
+    if is_verified:
+        timestamp = datetime.datetime.now().replace(microsecond=0)
+        print(timestamp)
+        data_manager.update_last_login(user_data['username'], timestamp)
+    return is_verified
 
 
 def hash_password(plain_text_password):

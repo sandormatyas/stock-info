@@ -18,3 +18,12 @@ def get_hashed_password(cursor, username):
     """, {'username': username})
     password = cursor.fetchone()
     return password['password']  # so it returns a string instead of Dict
+
+
+@connection_db.connection_handler
+def update_last_login(cursor, username, time):
+    cursor.execute("""
+        UPDATE users
+        SET last_login = %(time)s
+        WHERE username = %(username)s
+    """, {'time': time, 'username': username})
