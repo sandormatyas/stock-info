@@ -1,6 +1,37 @@
-{% block head %}{% endblock %}
-{% block content %}
-<div class="container">
+<template id="stock-info">
+    <div class="container">
+        <div id="header" class="row justify-content-between">
+            <div class="col-2">
+                <a href="#">Back</a>
+            </div>
+            <div class="col-4">
+                Refresh
+            </div>
+        </div>
+        <div id="stock-details" class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">General company info</div>
+                </div>
+                <div class="row"><div class="col">Name:</div><div id="stock-name" class="col"></div></div>
+                <div class="row"><div class="col">Description:</div><div id="stock-description" class="col"></div></div>
+                <div class="row"><div class="col">Country:</div><div id="stock-country" class="col"></div></div>
+                <div class="row"><div class="col">Sector:</div><div id="stock-sector" class="col"></div></div>
+                <div class="row"><div class="col">Industry:</div><div id="stock-industry" class="col"></div></div>
+                <div class="row"><div class="col">Website:</div><div id="stock-website" class="col"></div></div>
+                <div class="row"><div class="col">Employees:</div><div id="stock-employees" class="col"></div></div>
+            </div>
+        </div>
+        <div id="news" class="row">
+            <div class="col">
+                <div class="row"><div class="col">News feed</div></div>
+                <div id="stock-news"></div>
+            </div>
+        </div>
+        <div id="chart-row" class="row">
+            <div id="chart" class="col">
 
-</div>
-{% endblock %}
+            </div>
+        </div>
+    </div>
+</template>
