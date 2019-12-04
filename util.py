@@ -5,8 +5,6 @@ import pytz
 
 # data manipulation on fetched json goes here
 
-watchlist = ['FB', 'TSLA', 'AMZN', 'AAPL', 'GOOGL']
-
 
 def get_quotes_for_main_page(user_id):
     tickers = data_manager.get_tickers_by_user(user_id)
@@ -32,9 +30,11 @@ def process_raw_quotes_data(data):
             'name': record["longName"],
             'actual_price': record["regularMarketPrice"],
             'daily_price_change': record["regularMarketChange"],
-            'daily_price_rel_change': record["regularMarketChangePercent"] + '%',
-            'mkt_time': pytz.timezone('US/Eastern').localize(datetime.fromtimestamp(int(record["regularMarketTime"]))),
-            'local_time': datetime.fromtimestamp(int(record["regularMarketTime"])),
+            'daily_price_rel_change': str(record["regularMarketChangePercent"]) + '%',
+            'timestamp': record["regularMarketTime"],
+            'market_status': 'OPEN' if record['marketState'] == 'REGULAR' else 'CLOSED',
+            'mkt_time': datetime.fromtimestamp(record["regularMarketTime"], pytz.timezone('US/Eastern')),
+            'local_time': datetime.fromtimestamp(record["regularMarketTime"]),
             'trends': record["pageViews"]
         })
 
