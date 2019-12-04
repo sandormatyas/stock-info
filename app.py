@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 import util
 import user_methods
 
@@ -33,7 +33,7 @@ def logout():
 
 @app.route('/users')
 def users():
-    return user_methods.get_users()
+    return jsonify(user_methods.get_users())
 
 if __name__ == '__main__':
     app.run(debug=True)

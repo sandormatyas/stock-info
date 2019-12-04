@@ -30,7 +30,7 @@ export let dataHandler = {
     getUsers: function (callback) {
         //gets existing usernames
         this._api_get('/users', response => {
-            callback(response)
+            callback(response);
         })
     }
 };
