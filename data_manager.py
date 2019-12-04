@@ -8,6 +8,7 @@ def register_user(cursor, user_data):
         VALUES (%(username)s, %(password)s)
     """, {'username': user_data['username'], 'password': user_data['password']})
 
+
 @connection_db.connection_handler
 def get_hashed_password(cursor, username):
     cursor.execute("""
