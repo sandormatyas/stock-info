@@ -41,4 +41,34 @@ def process_raw_quotes_data(data):
     return processed_quotes
 
 
+def get_all_stock_details_for_stock_page(ticker):
 
+    detail_params = {
+        "region": "US",
+        "lang": "en",
+        "symbol": ticker
+    }
+
+    default_chart_params = {
+        "region": "US",
+        "lang": "en",
+        "symbol": ticker,
+        "interval": "1d",
+        "range": "3mo"
+    }
+
+    news_limit = 25
+
+    raw_stock_details = connection_api.get_stock_detail(detail_params)
+    raw_stock_news = connection_api.get_stock_news(ticker, news_limit)
+    raw_charts = connection_api.get_chart_data(default_chart_params)
+
+    return process_raw_stock_details(raw_stock_details, raw_stock_news, raw_charts)
+
+
+def process_raw_stock_details(details, news, charts):
+    processed_details = {
+        'ticker': ,
+        'name': ,
+        ''
+    }
