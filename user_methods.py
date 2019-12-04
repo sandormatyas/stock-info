@@ -14,7 +14,6 @@ def handle_login(user_data):
     is_verified = verify_password(plain_text_password, hashed_password)
     if is_verified:
         timestamp = datetime.datetime.now().replace(microsecond=0)
-        print(timestamp)
         data_manager.update_last_login(user_data['username'], timestamp)
     return is_verified
 
