@@ -20,7 +20,10 @@ def register_user(cursor, user_data):
     cursor.execute("""
         INSERT INTO users (username, password)
         VALUES (%(username)s, %(password)s)
+        RETURNING id
     """, {'username': user_data['username'], 'password': user_data['password']})
+    user_id = cursor.fetchone()
+    return user_id['id']
 
 
 @connection_db.connection_handler

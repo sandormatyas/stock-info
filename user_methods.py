@@ -6,8 +6,9 @@ from flask import session
 
 def handle_register(user_data):
     user_data['password'] = hash_password(user_data['password'])
-    data_manager.register_user(user_data)
-
+    user_id = data_manager.register_user(user_data)
+    session['username'] = user_data['username']
+    session['user_id'] = user_id
 
 def handle_login(user_data):
     hashed_password = data_manager.get_hashed_password(user_data['username'])
@@ -19,6 +20,10 @@ def handle_login(user_data):
         session['username'] = user_data['username']
         session['user_id'] = user_id
     return is_verified
+
+
+def get_users():
+    return data_manager.get_existing_usernames()
 
 
 def hash_password(plain_text_password):
