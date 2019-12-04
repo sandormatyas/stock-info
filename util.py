@@ -28,9 +28,9 @@ def process_raw_quotes_data(data):
         processed_quotes.append({
             'ticker': record["symbol"],
             'name': record["longName"],
-            'actual_price': record["regularMarketPrice"],
-            'daily_price_change': record["regularMarketChange"],
-            'daily_price_rel_change': str(record["regularMarketChangePercent"]) + '%',
+            'actual_price': round(record["regularMarketPrice"], 2),
+            'daily_price_change': round(record["regularMarketChange"], 2),
+            'daily_price_rel_change': str(round(record["regularMarketChangePercent"], 2)) + '%',
             'timestamp': record["regularMarketTime"],
             'market_status': 'OPEN' if record['marketState'] == 'REGULAR' else 'CLOSED',
             'mkt_time': datetime.fromtimestamp(record["regularMarketTime"], pytz.timezone('US/Eastern')),

@@ -49,6 +49,7 @@ th[rowspan="2"] {
 
 body {
     background-image: url("pet_project_background.jpg");
+    margin-top: 200px;
 }
 
 #chart_div {
@@ -57,10 +58,12 @@ body {
     margin-right: auto;
 }
 
-.fas fa-angle-double-up {
+.fas.fa-angle-double-up {
     color: forestgreen;
+    font-size: 40px;
 }
 
-.fas fa-angle-double-down {
+.fas.fa-angle-double-down {
     color: red;
+    font-size: 40px;
 }
