@@ -10,6 +10,7 @@ def handle_register(user_data):
     session['username'] = user_data['username']
     session['user_id'] = user_id
 
+
 def handle_login(user_data):
     hashed_password = data_manager.get_hashed_password(user_data['username'])
     is_verified = verify_password(user_data['password'], hashed_password)
