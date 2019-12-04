@@ -31,10 +31,11 @@ def process_raw_quotes_data(data):
             'actual_price': round(record["regularMarketPrice"], 2),
             'daily_price_change': round(record["regularMarketChange"], 2),
             'daily_price_rel_change': str(round(record["regularMarketChangePercent"], 2)) + '%',
-            'timestamp': record["regularMarketTime"],
             'market_status': 'OPEN' if record['marketState'] == 'REGULAR' else 'CLOSED',
-            'mkt_time': datetime.fromtimestamp(record["regularMarketTime"], pytz.timezone('US/Eastern')),
-            'local_time': datetime.fromtimestamp(record["regularMarketTime"]),
+            'mkt_time': datetime.fromtimestamp(record["regularMarketTime"],
+                                               pytz.timezone('US/Eastern')).strftime('%a %b %d %X %Z'),
+            'local_time': datetime.fromtimestamp(record["regularMarketTime"],
+                                                 pytz.timezone('CET')).strftime('%X %Z'),
             'trends': record["pageViews"]
         })
 
