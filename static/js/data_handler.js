@@ -26,5 +26,11 @@ export let dataHandler = {
     },
     getStock: function (stockTicker, callback) {
         // example
+    },
+    getUsers: function (callback) {
+        //gets existing usernames
+        this._api_get('/users', response => {
+            callback(response)
+        })
     }
 };

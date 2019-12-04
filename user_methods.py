@@ -21,6 +21,10 @@ def handle_login(user_data):
     return is_verified
 
 
+def get_users():
+    return data_manager.get_existing_usernames()
+
+
 def hash_password(plain_text_password):
     hashed_bytes = bcrypt.hashpw(plain_text_password.encode('utf-8'), bcrypt.gensalt())
     return hashed_bytes.decode('utf-8')

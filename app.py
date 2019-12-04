@@ -31,5 +31,9 @@ def logout():
     return redirect('/')
 
 
+@app.route('/users')
+def users():
+    return user_methods.get_users()
+
 if __name__ == '__main__':
     app.run(debug=True)

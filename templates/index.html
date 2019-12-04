@@ -2,6 +2,7 @@
 {% block head %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/charts.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/registration.js') }}" defer></script>
 {% endblock %}
 {% block content %}
     {% if not session.username %}
