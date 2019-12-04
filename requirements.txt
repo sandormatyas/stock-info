@@ -1,3 +1,4 @@
+pytz
 requests
 bcrypt==3.1.7
 bootstrap4==0.1.0
