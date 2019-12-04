@@ -28,12 +28,14 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username')
+    session.pop('user_id')
     return redirect('/')
 
 
 @app.route('/users')
 def users():
     return jsonify(user_methods.get_users())
+
 
 if __name__ == '__main__':
     app.run(debug=True)
