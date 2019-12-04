@@ -70,7 +70,8 @@ SET default_with_oids = false;
 CREATE TABLE public.users (
     id integer NOT NULL,
     username character varying NOT NULL,
-    password character varying NOT NULL
+    password character varying NOT NULL,
+    last_login timestamp without time zone
 );
 
 
