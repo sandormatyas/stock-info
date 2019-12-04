@@ -56,3 +56,11 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.fas fa-angle-double-up {
+    color: forestgreen;
+}
+
+.fas fa-angle-double-down {
+    color: red;
+}
