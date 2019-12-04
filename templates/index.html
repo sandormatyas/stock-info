@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index_page_stylesheet.css')}}">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/charts.js') }}" defer></script>
+    <script type="text/javascript" src=""{{ url_for('static', filename='js/table_handler.js') }} defer></script>
 {% endblock %}
 {% block content %}
     {% if not session.username %}
