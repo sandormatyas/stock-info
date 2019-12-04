@@ -67,4 +67,8 @@ def get_all_stock_details_for_stock_page(ticker):
 
 
 def process_raw_stock_details(details, news, charts):
-    pass
+    processed_details = {
+        'ticker': ,
+        'name': ,
+        ''
+    }
