@@ -49,7 +49,6 @@ function inputHandler(event) {
             $('#stockSearch').autocomplete({
                 source: results
             });
-            $( '#stockSearch').autocomplete( "option", "appendTo", ".inputModal" );
         });
     }
 }
@@ -120,11 +119,22 @@ function addEventListenerForRefreshButton() {
     })
 }
 
+function savePickedStock() {
+    document.getElementById('saveStock').addEventListener('click', function (event) {
+        let newItem = document.getElementById("stockSearch").value;
+        console.log(newItem);
+        dataHandler._api_put('/stocks', newItem, function () {
+            $('#inputModal').modal('hide');
+        })
+    })
+}
+
 
 function main() {
     showMainTable();
     inputListener();
     addEventListenerForRefreshButton();
+    savePickedStock();
 }
 
 main();

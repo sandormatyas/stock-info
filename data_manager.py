@@ -68,3 +68,13 @@ def delete_user_ticker(cursor, ticker, user):
                     """, {'user': user, 'ticker': ticker})
     delete_result = cursor.fetchone()
     return delete_result
+
+
+def save_new_stock(params):
+    query = '''
+            INSERT INTO users_tickers (id, user_id, ticker, name) 
+            VALUES (DEFAULT, %(user_id)s, %(ticker)s, %(name)s)
+            RETURNING ticker
+            '''
+
+    return connection_db.execute_query(query, params=params)

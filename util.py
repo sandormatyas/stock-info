@@ -131,5 +131,11 @@ def get_autocomplete_options(search):
         "lang": "en",
         "query": search
     }
-
     return connection_api.get_autocomplete(params)
+
+
+def save_new_stock_from_input(params):
+    params['ticker'] = params['input'].split('/', maxsplit=1)[1]
+    params['name'] = params['input'].split('/', maxsplit=1)[0]
+
+    return data_manager.save_new_stock(params)

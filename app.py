@@ -41,7 +41,9 @@ def users():
 @app.route('/stocks', methods=['GET', 'PUT'])
 def stocks_overview():
     if request.method == 'PUT':
-        return  # adding new ticker to database
+        input_stock = request.get_json(force=True)
+        params = {'user_id': session['user_id'], 'input': input_stock}
+        return jsonify(util.save_new_stock_from_input(params))
 
     if request.args:
         search = request.args.get('search')
