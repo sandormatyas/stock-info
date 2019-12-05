@@ -4,7 +4,7 @@
     float: top;
     margin-left:auto;
     margin-right:auto;
-}
+}loadStockInfo
 
 #dtBasicExample {
     border: 5px solid rgba(31,34,110,0.61);
@@ -49,7 +49,7 @@ th[rowspan="2"] {
 
 body {
     background-image: url("pet_project_background.jpg");
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 #chart_div {
