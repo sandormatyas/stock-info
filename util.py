@@ -36,8 +36,20 @@ def process_raw_quotes_data(data):
                                                pytz.timezone('US/Eastern')).strftime('%a %b %d %X %Z'),
             'local_time': datetime.fromtimestamp(record["regularMarketTime"],
                                                  pytz.timezone('CET')).strftime('%X %Z'),
-            'trends': record["pageViews"]
+            'trends': record["pageViews"],
+            'change_status': "increase" if record["regularMarketChange"] > 0 else "decrease"
         })
+        print(processed_quotes)
+
+        for key in processed_quotes[-1]["trends"].keys():
+            if processed_quotes[-1]["trends"][key] == 'UP':
+                processed_quotes[-1]["trends"][key] = "fas fa-angle-double-up"
+
+            elif processed_quotes[-1]["trends"][key] == 'DOWN':
+                processed_quotes[-1]["trends"][key] = "fas fa-angle-double-down"
+
+            else:
+                processed_quotes["trends"][key] = "fas fa-minus"
 
     return processed_quotes
 
