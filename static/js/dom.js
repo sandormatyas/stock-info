@@ -16,4 +16,16 @@ function showMainTable() {
     }});
 }
 
+function inputHandler() {
+    let inputField = document.getElementById('stockSearch');
+
+}
+function getAutoSearchOptions(search, callback) {
+    let url = `/stocks?search=${search}`;
+    dataHandler._api_get(`/stocks?search=${search}`, function (json) {
+        callback(json)
+    })
+}
+
+
 showMainTable();

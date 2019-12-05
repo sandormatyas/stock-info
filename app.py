@@ -42,6 +42,10 @@ def stocks_overview():
     if request.method == 'PUT':
         return  # adding new ticker to database
 
+    if request.args:
+        search = request.args.get('search')
+        return jsonify(util.get_autocomplete_options(search))
+
     return jsonify(util.get_quotes_for_main_page(session['user_id']))
 
 

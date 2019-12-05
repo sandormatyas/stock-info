@@ -24,6 +24,20 @@ export let dataHandler = {
         .then(json_response => callback(json_response));
 
     },
+    _api_put: function(url, data, callback){
+
+        return fetch(url, {
+            method: 'PUT',
+            credentials: 'same-origin',
+            headers: new Headers({
+                'content-type': 'application/json'
+            }),
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(json => callback(json));
+    },
+
     getStock: function (stockTicker, callback) {
         // example
     },
