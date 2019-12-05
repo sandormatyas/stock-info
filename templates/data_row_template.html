@@ -1,16 +1,16 @@
 {% raw %}
 <script id="data-row-template" type="text/x-handlebars-template">
-    <tr>
-        <td><strong>{{ticker}}<strong></td>
-        <td>{{name}}</td>
-        <td><strong>{{actual_price}}</strong></td>
-        <td class="{{change_status}}"><strong>{{daily_price_change}}</strong></td>
-        <td class="{{change_status}}"><strong>{{daily_price_rel_change}}</strong></td>
-        <td><i class="{{trends.shortTermTrend}}"></i></td>
-        <td><i class="{{trends.midTermTrend}}"></i></td>
-        <td><i class="{{trends.longTermTrend}}"></i></td>
-        <td class="time">{{mkt_time}} /<br> {{ local_time }} </td>
-        <td class="time">{{market_status}}</td>
+    <tr class="{{ ticker }}">
+        <td class="ticker"><strong>{{ticker}}</strong></td>
+        <td class="name">{{name}}</td>
+        <td class="actual-price"><strong>{{actual_price}}</strong></td>
+        <td class="{{change_status}} daily-price"><strong>{{daily_price_change}}</strong></td>
+        <td class="{{change_status}} daily-price-percentage"><strong>{{daily_price_rel_change}}</strong></td>
+        <td class="short-term-trend"><i class="{{trends.shortTermTrend}}"></i></td>
+        <td class="mid-term-trend"><i class="{{trends.midTermTrend}}"></i></td>
+        <td class="long-term-trend"><i class="{{trends.longTermTrend}}"></i></td>
+        <td class="time market-local-time">{{mkt_time}} /<br> {{ local_time }} </td>
+        <td class="time status">{{market_status}}</td>
         <td><button type="button" class="btn btn-outline-warning border-0" data-ticker="{{ ticker }}"><i class="fa fa-trash"></i></button></td>
     </tr>
 </script>
