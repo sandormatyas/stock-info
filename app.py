@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 import util
 import user_methods
+import data_manager
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -40,7 +41,13 @@ def users():
 @app.route('/stocks', methods=['GET', 'PUT'])
 def stocks_overview():
     if request.method == 'PUT':
-        return  # adding new ticker to database
+        input_stock = request.get_json(force=True)
+        params = {'user_id': session['user_id'], 'input': input_stock}
+        return jsonify(util.save_new_stock_from_input(params))
+
+    if request.args:
+        search = request.args.get('search')
+        return jsonify(util.get_autocomplete_options(search))
 
     return jsonify(util.get_quotes_for_main_page(session['user_id']))
 
@@ -48,7 +55,9 @@ def stocks_overview():
 @app.route('/stocks/<ticker>', methods=['GET', 'DELETE'])
 def stock_details(ticker):
     if request.method == 'DELETE':
-        return  # delete record from user watchlist
+        user = session['user_id']
+        delete_result = data_manager.delete_user_ticker(ticker, user)
+        return delete_result
 
     return jsonify(util.get_all_stock_details_for_stock_page(ticker))
 

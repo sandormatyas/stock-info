@@ -67,6 +67,10 @@ body {
     color: red;
     font-size: 30px;
 }
+.fas.fa-minus {
+    color: blue;
+    font-size: 30px;
+}
 
 .time {
     font-size: small;
@@ -76,4 +80,34 @@ body {
 }
 .nav-buttons {
     text-align: right;
+}
+.increase {
+    color: forestgreen;
+}
+.decrease {
+    color: red
+}
+.ui-autocomplete {
+    z-index:2150000000;
+    background-color: white;
+    width: max-content;
+    font-family: sans-serif;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.ui-autocomplete:hover {
+    z-index:2150000000;
+    cursor: pointer;
+}
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.ticker {
+  transition: 0.3s;
+}
+
+.ticker:hover {
+  background-color: #5a6268;
+  color: white;
 }

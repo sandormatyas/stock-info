@@ -41,3 +41,9 @@ def get_chart_data(params):
 
     return fetch_yahoo_fin(url_end, params=params)
 
+
+def get_autocomplete(params):
+    url_end = "market/auto-complete"
+
+    return fetch_yahoo_fin(url_end, params=params)
+

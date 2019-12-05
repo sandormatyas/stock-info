@@ -14,6 +14,8 @@
     <script type="module" src="{{ url_for('static', filename='js/dom.js') }}" defer></script>
     <script type="module" src="{{ url_for('static', filename='js/stock_info.js') }}" defer></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/charts.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.js') }}" defer></script>
 
 {% endblock %}
 {% block content %}
@@ -22,6 +24,7 @@
     {% else %}
         {% include 'stock_exchange_data.html' %}
         {% include 'data_row_template.html' %}
+        {% include 'add_stock_modal.html' %}
     {% endif %}
     <div id="content">
     </div>

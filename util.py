@@ -36,8 +36,20 @@ def process_raw_quotes_data(data):
                                                pytz.timezone('US/Eastern')).strftime('%a %b %d %X %Z'),
             'local_time': datetime.fromtimestamp(record["regularMarketTime"],
                                                  pytz.timezone('CET')).strftime('%X %Z'),
-            'trends': record["pageViews"]
+            'trends': record["pageViews"],
+            'change_status': "increase" if record["regularMarketChange"] > 0 else "decrease"
         })
+        print(processed_quotes)
+
+        for key in processed_quotes[-1]["trends"].keys():
+            if processed_quotes[-1]["trends"][key] == 'UP':
+                processed_quotes[-1]["trends"][key] = "fas fa-angle-double-up"
+
+            elif processed_quotes[-1]["trends"][key] == 'DOWN':
+                processed_quotes[-1]["trends"][key] = "fas fa-angle-double-down"
+
+            else:
+                processed_quotes[-1]["trends"][key] = "fas fa-minus"
 
     return processed_quotes
 
@@ -117,3 +129,19 @@ def process_chart_data(data):
         processed_chart_data.append([t, l, o, c, h])
 
     return processed_chart_data
+
+
+def get_autocomplete_options(search):
+    params = {
+        "region": "US",
+        "lang": "en",
+        "query": search
+    }
+    return connection_api.get_autocomplete(params)
+
+
+def save_new_stock_from_input(params):
+    params['ticker'] = params['input'].split('/', maxsplit=1)[1]
+    params['name'] = params['input'].split('/', maxsplit=1)[0]
+
+    return data_manager.save_new_stock(params)
