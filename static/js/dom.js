@@ -38,16 +38,35 @@ function deleteRow(tickerOfRow, rowOfDeleteButton) {
     })
 }
 
-function inputHandler() {
-    let inputField = document.getElementById('stockSearch');
-
+function inputHandler(event) {
+    let search = event.target.value;
+    if (search.length >= 3) {
+        getAutoSearchOptions(search, function (data) {
+            let results = [];
+            for (let row of data["ResultSet"]["Result"]) {
+                results.push(row['name'] + '/' + row['symbol'])
+            }
+            console.log(results);
+            $('#stockSearch').autocomplete({
+                source: results
+            });
+            $( '#stockSearch').autocomplete( "option", "appendTo", ".inputModal" );
+        });
+    }
 }
+
 function getAutoSearchOptions(search, callback) {
     let url = `/stocks?search=${search}`;
-    dataHandler._api_get(`/stocks?search=${search}`, function (json) {
+    dataHandler._api_get(url, function (json) {
         callback(json)
     })
 }
 
+function inputListener() {
+    document.getElementById('stockSearch').addEventListener('input', inputHandler)
+}
+
 
 showMainTable();
+inputListener();
+

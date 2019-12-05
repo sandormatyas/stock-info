@@ -87,3 +87,17 @@ body {
 .decrease {
     color: red
 }
+.ui-autocomplete {
+    z-index:2150000000;
+    background-color: white;
+    width: max-content;
+    font-family: sans-serif;
+    margin-top: 5px;
+    border-radius: 5px;
+
+}
+.ui-autocomplete:hover {
+    z-index:2150000000;
+    cursor: pointer;
+}
+
