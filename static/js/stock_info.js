@@ -1,4 +1,5 @@
 import {dataHandler} from "./data_handler.js";
+import {tableLoader} from "./dom.js";
 
 export let stockLoader = {
     loadStockInfo: function (event) {
@@ -67,10 +68,13 @@ export let stockLoader = {
 
     },
     addListenerToButtons: function () {
-        document.querySelector('#back-to-main').addEventListener('click', this.handleBackToMain());
+        document.querySelector('#back-to-main').addEventListener('click', event => this.handleBackToMain(event));
         document.querySelector('#refresh-stock-info').addEventListener('click', event => this.handleRefreshInfo(event));
     },
-    handleBackToMain: function () {
+    handleBackToMain: function (event) {
+        console.log('back');
+        document.querySelector('#content').innerHTML = "";
+        tableLoader.showMainTable();
         
     },
     handleRefreshInfo: function (event) {
