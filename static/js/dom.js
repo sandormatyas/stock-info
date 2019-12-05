@@ -33,7 +33,7 @@ export let tableLoader = {
     }
 };
 
-}
+
 //add event listener for delete buttons
 function addEventListenerForDeleteButton() {
     let deleteButtons = document.getElementsByClassName('btn btn-outline-warning border-0');
