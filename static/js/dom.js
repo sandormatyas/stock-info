@@ -17,8 +17,9 @@ export let tableLoader = {
             }
             const tickers = document.querySelectorAll('.ticker');
             for (const ticker of tickers){
-            ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))}
+                ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))}
             addEventListenerForDeleteButton();
+            addEventListenerForRefreshButton();
         });
     }
 };
@@ -138,7 +139,6 @@ function savePickedStock() {
 function main() {
     tableLoader.showMainTable();
     inputListener();
-    addEventListenerForRefreshButton();
     savePickedStock();
 }
 
