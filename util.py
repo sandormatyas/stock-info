@@ -92,11 +92,11 @@ def process_raw_stock_details(details, news, charts):
             'published': title['date']
         }
         if processed_title['sentiment'] == 'Positive':
-            processed_title['sentiment'] = 'far fa-smile'
+            processed_title['sentiment'] = 'fa-smile'
         elif processed_title['sentiment'] == 'Negative':
-            processed_title['sentiment'] = 'far fa-frown'
+            processed_title['sentiment'] = 'fa-frown'
         else:
-            processed_title['sentiment'] = 'far fa-meh'
+            processed_title['sentiment'] = 'fa-meh'
 
         processed_news.append(processed_title)
 

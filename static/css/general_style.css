@@ -3,9 +3,14 @@
 }
 
 #news {
-    background-color: #c8cdd8;
+    background-color: rgba(0,0,0,.05);
 }
 
 #stock-news {
     height: 330px;
+}
+
+#news-sentiment {
+    font-size: xx-large;
+    display: table-cell;
 }

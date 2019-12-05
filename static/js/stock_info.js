@@ -9,6 +9,7 @@ export let stockLoader = {
             const page = document.querySelector('#content');
             page.innerHTML = "";
             page.appendChild(stockPage);
+            this.insertChart(stockPage, stockData[2]);
         })
     },
     createStockTemplate: function (stockData) {
@@ -32,20 +33,34 @@ export let stockLoader = {
         const newsBlock = emptyPage.querySelector('#stock-news');
         const newsTemplate = document.querySelector('#stock-news-template');
 
-        for (const news_story of news) {
+        for (const newsStory of news) {
             const newsTemplateCopy = document.importNode(newsTemplate.content, true);
 
-            newsTemplateCopy.querySelector('#news-sentiment').textContent = news_story.sentiment;
-            newsTemplateCopy.querySelector('#news-picture').src = news_story.img_url;
-            newsTemplateCopy.querySelector('#news-title').textContent = news_story.title;
-            newsTemplateCopy.querySelector('#news-title').href = news_story.news_url;
-            newsTemplateCopy.querySelector('#news-publisher').textContent = news_story.source;
-            newsTemplateCopy.querySelector('#news-date').textContent = news_story.published;
+            newsTemplateCopy.querySelector('#news-sentiment').classList.add(newsStory.sentiment);
+            newsTemplateCopy.querySelector('#news-picture').src = newsStory.img_url;
+            newsTemplateCopy.querySelector('#news-title').textContent = newsStory.title;
+            newsTemplateCopy.querySelector('#news-title').href = newsStory.news_url;
+            newsTemplateCopy.querySelector('#news-publisher').textContent = newsStory.source;
+            newsTemplateCopy.querySelector('#news-date').textContent = newsStory.published;
 
             newsBlock.appendChild(newsTemplateCopy);
         }
     },
     insertChart: function (stockPage, chartData) {
-        
-    }
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart(chartData));
+
+        function drawChart(chartData) {
+            var data = google.visualization.arrayToDataTable(chartData, true);
+
+            var options = {
+                legend: 'none'
+            }
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('chart-display'));
+
+            chart.draw(data, options);
+        }
+
+    },
 };
