@@ -10,11 +10,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Overview
+                    My Stonks
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Show stocks</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
                 </div>
             </li>
         </ul>
@@ -22,7 +20,7 @@
             <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
                 <li class="nav-item">
                     <span id="user-data" class="navbar-text" data-username="{{ session.username }}"
-                          data-user-id="{{ session.user_id }}"">Hi, {{ session.username }} |</span>
+                          data-user-id="{{ session.user_id }}">Hi, {{ session.username }} |</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -31,3 +29,6 @@
         {% endif %}
     </div>
 </nav>
+<template id="dropdown-items-template">
+    <a href="#" class="ticker option dropdown-item"></a>
+</template>
