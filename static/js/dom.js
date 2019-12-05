@@ -1,10 +1,11 @@
 import { dataHandler } from "./data_handler.js";
+import {stockLoader} from "./stock_info.js";
 
 function showMainTable() {
     let tableTemplate = document.getElementById('table-header-template').innerHTML;
     let compiledTemplate = Handlebars.compile(tableTemplate);
     let renderedTemplate = compiledTemplate();
-    document.querySelector('body').insertAdjacentHTML('beforeend', renderedTemplate);
+    document.querySelector('#content').insertAdjacentHTML('beforeend', renderedTemplate);
 
     dataHandler._api_get('/stocks', function (data) {
         for (let row of data) {
@@ -37,6 +38,8 @@ function showMainTable() {
             console.log(row);
             let renderedTemplate = compiledTemplate(row);
             document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
+            const ticker = document.querySelector('.ticker');
+            ticker.addEventListener('click', (event)=> stockLoader.loadStockInfo(event));
     }});
 }
 
