@@ -126,11 +126,36 @@ function addEventListenerForRefreshButton() {
 }
 
 function savePickedStock() {
+    $("#inputModal").on("show.bs.modal", function (event) {
+            document.getElementById("stockSearch").focus()
+    });
     document.getElementById('saveStock').addEventListener('click', function (event) {
         let newItem = document.getElementById("stockSearch").value;
         console.log(newItem);
-        dataHandler._api_put('/stocks', newItem, function () {
-            $('#inputModal').modal('hide');
+        dataHandler._api_put('/stocks', newItem, function (json) {
+            console.log(json, 'json');
+            if (typeof json === "object") {
+                dataHandler._api_get('/stocks', function (data) {
+                    let rowTemplate = document.getElementById('data-row-template').innerHTML;
+                    let compiledTemplate = Handlebars.compile(rowTemplate);
+                    let renderedTemplate = compiledTemplate(data[data.length - 1]);
+                    document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
+
+                    let insertedRow = document.querySelector("tbody").lastChild.previousSibling;
+                    insertedRow.querySelector('.ticker').addEventListener('click', (event) => stockLoader.loadStockInfo(event));
+
+                    insertedRow.querySelector('button').addEventListener('click', function (event) {
+                        let deleteButton = event.currentTarget;
+                        let tickerOfRow = deleteButton.dataset.ticker;
+                        deleteRow(tickerOfRow, insertedRow);
+                    })
+
+                });
+                let inputField = document.getElementById("stockSearch");
+                inputField.value = '';
+                inputField.focus();
+
+            }
         })
     })
 }

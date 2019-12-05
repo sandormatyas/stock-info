@@ -36,7 +36,7 @@ def process_raw_quotes_data(data):
                                                pytz.timezone('US/Eastern')).strftime('%a %b %d %X %Z'),
             'local_time': datetime.fromtimestamp(record["regularMarketTime"],
                                                  pytz.timezone('CET')).strftime('%X %Z'),
-            'trends': record["pageViews"],
+            'trends': record.get("pageViews", {}),
             'change_status': "increase" if record["regularMarketChange"] > 0 else "decrease"
         })
         print(processed_quotes)
@@ -143,5 +143,9 @@ def get_autocomplete_options(search):
 def save_new_stock_from_input(params):
     params['ticker'] = params['input'].split('/', maxsplit=1)[1]
     params['name'] = params['input'].split('/', maxsplit=1)[0]
+    tickers = '%2C'.join([ticker['ticker'] for ticker in data_manager.get_tickers_by_user(params['user_id'])])
 
-    return data_manager.save_new_stock(params)
+    if params['ticker'] not in tickers:
+        return data_manager.save_new_stock(params)
+
+    return 'Ticker is already on whatchlist'

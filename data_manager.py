@@ -74,7 +74,7 @@ def save_new_stock(params):
     query = '''
             INSERT INTO users_tickers (id, user_id, ticker, name) 
             VALUES (DEFAULT, %(user_id)s, %(ticker)s, %(name)s)
-            RETURNING ticker
+            RETURNING id, user_id, ticker, name
             '''
 
     return connection_db.execute_query(query, params=params)
