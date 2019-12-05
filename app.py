@@ -37,9 +37,20 @@ def users():
     return jsonify(user_methods.get_users())
 
 
-@app.route('/stocks')
+@app.route('/stocks', methods=['GET', 'PUT'])
 def stocks_overview():
+    if request.method == 'PUT':
+        return  # adding new ticker to database
+
     return jsonify(util.get_quotes_for_main_page(session['user_id']))
+
+
+@app.route('/stocks/<ticker>', methods=['GET', 'DELETE'])
+def stock_details(ticker):
+    if request.method == 'DELETE':
+        return  # delete record from user watchlist
+
+    return jsonify(util.get_all_stock_details_for_stock_page(ticker))
 
 
 if __name__ == '__main__':

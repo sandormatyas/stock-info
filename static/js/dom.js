@@ -6,7 +6,6 @@ function showMainTable() {
     let renderedTemplate = compiledTemplate();
     document.querySelector('body').insertAdjacentHTML('beforeend', renderedTemplate);
 
-    let tbody = document.querySelector("tbody");
     dataHandler._api_get('/stocks', function (data) {
         for (let row of data) {
 
@@ -37,8 +36,8 @@ function showMainTable() {
             let compiledTemplate = Handlebars.compile(rowTemplate);
             console.log(row);
             let renderedTemplate = compiledTemplate(row);
-            tbody.insertAdjacentHTML("beforeend", renderedTemplate);
-    }})
+            document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
+    }});
 }
 
 showMainTable();
