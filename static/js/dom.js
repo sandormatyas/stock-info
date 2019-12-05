@@ -35,7 +35,6 @@ function showMainTable() {
 
             let rowTemplate = document.getElementById('data-row-template').innerHTML;
             let compiledTemplate = Handlebars.compile(rowTemplate);
-            console.log(row);
             let renderedTemplate = compiledTemplate(row);
             document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
             const ticker = document.querySelector('.ticker');
@@ -43,4 +42,8 @@ function showMainTable() {
     }});
 }
 
-showMainTable();
+function main() {
+    showMainTable();
+}
+
+main();
