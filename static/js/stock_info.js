@@ -75,14 +75,12 @@ export let stockLoader = {
         document.querySelector('#refresh-stock-info').addEventListener('click', event => this.handleRefreshInfo(event));
     },
     handleBackToMain: function (event) {
-        console.log('back');
         document.querySelector('#content').innerHTML = "";
         tableLoader.showMainTable();
         
     },
     handleRefreshInfo: function (event) {
         document.querySelector('#content').innerHTML = "";
-        console.log('refresh');
         this.loadStockInfo(event);
     }
 };

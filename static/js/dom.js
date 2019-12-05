@@ -35,9 +35,10 @@ export let tableLoader = {
                 let compiledTemplate = Handlebars.compile(rowTemplate);
                 let renderedTemplate = compiledTemplate(row);
                 document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
-                const ticker = document.querySelector('.ticker');
-                ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event));
             }
+                const tickers = document.querySelectorAll('.ticker');
+                for (const ticker of tickers){
+                ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))}
         });
     }
 };
