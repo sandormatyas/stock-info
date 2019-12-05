@@ -9,7 +9,7 @@ export let stockLoader = {
             const page = document.querySelector('#content');
             page.innerHTML = "";
             page.appendChild(stockPage);
-            this.insertChart(stockPage, stockData[2]);
+            this.insertChart(stockPage, stockData[2], ticker);
             this.addListenerToButtons();
 
             //set back the cursor after the page is loaded
@@ -52,7 +52,7 @@ export let stockLoader = {
             newsBlock.appendChild(newsTemplateCopy);
         }
     },
-    insertChart: function (stockPage, chartData) {
+    insertChart: function (stockPage, chartData, ticker) {
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart(chartData));
 
@@ -61,7 +61,7 @@ export let stockLoader = {
 
             var options = {
                 legend: 'none',
-                height: 500
+                height: 500,
             };
 
             var chart = new google.visualization.CandlestickChart(document.getElementById('chart-display'));
@@ -77,7 +77,7 @@ export let stockLoader = {
     handleBackToMain: function (event) {
         document.querySelector('#content').innerHTML = "";
         tableLoader.showMainTable();
-        
+
     },
     handleRefreshInfo: function (event) {
         document.querySelector('#content').innerHTML = "";

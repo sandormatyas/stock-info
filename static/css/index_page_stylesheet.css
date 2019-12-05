@@ -85,8 +85,18 @@ body {
     color: forestgreen;
 }
 .decrease {
-    color: red
+    color: red;
 }
+.fa-meh {
+    color: blue;
+}
+.fa-frown {
+    color: red;
+}
+.fa-smile {
+    color: forestgreen;
+}
+
 .ui-autocomplete {
     z-index:2150000000;
     background-color: white;

@@ -39,7 +39,6 @@ def process_raw_quotes_data(data):
             'trends': record.get("pageViews", {}),
             'change_status': "increase" if record["regularMarketChange"] > 0 else "decrease"
         })
-        print(processed_quotes)
 
         for key in processed_quotes[-1]["trends"].keys():
             if processed_quotes[-1]["trends"][key] == 'UP':

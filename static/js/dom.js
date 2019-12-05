@@ -176,6 +176,7 @@ function main() {
     tableLoader.showMainTable();
     inputListener();
     savePickedStock();
+    google.charts.load('current', {'packages':['corechart']});
 }
 
 if (document.getElementById('user-data') != null) {
