@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 import util
 import user_methods
+import data_manager
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -48,7 +49,9 @@ def stocks_overview():
 @app.route('/stocks/<ticker>', methods=['GET', 'DELETE'])
 def stock_details(ticker):
     if request.method == 'DELETE':
-        return  # delete record from user watchlist
+        user = session['user_id']
+        delete_result = data_manager.delete_user_ticker(ticker, user)
+        return delete_result
 
     return jsonify(util.get_all_stock_details_for_stock_page(ticker))
 

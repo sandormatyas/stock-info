@@ -57,3 +57,14 @@ def get_existing_usernames(cursor):
     """)
     user_list = cursor.fetchall()
     return user_list
+
+
+@connection_db.connection_handler
+def delete_user_ticker(cursor, ticker, user):
+    cursor.execute("""
+                    DELETE FROM users_tickers
+                    WHERE user_id = %(user)s AND ticker = %(ticker)s
+                    RETURNING ticker
+                    """, {'user': user, 'ticker': ticker})
+    delete_result = cursor.fetchone()
+    return delete_result

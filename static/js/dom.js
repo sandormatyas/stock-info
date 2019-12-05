@@ -37,7 +37,30 @@ function showMainTable() {
             console.log(row);
             let renderedTemplate = compiledTemplate(row);
             document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
-    }});
+
+    }
+        addEventListenerForDeleteButton();
+    });
+}
+
+//add event listener for delete buttons
+function addEventListenerForDeleteButton() {
+    let deleteButtons = document.getElementsByClassName('btn btn-outline-warning border-0');
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener('click', function () {
+            let parentOfDeleteButton = deleteButton.parentElement;
+            let rowOfDeleteButton = parentOfDeleteButton.parentElement;
+            let tickerOfRow = deleteButton.getAttribute('data-ticker');
+            deleteRow(tickerOfRow, rowOfDeleteButton);
+        })
+    }
+}
+
+function deleteRow(tickerOfRow, rowOfDeleteButton) {
+    dataHandler._api_delete(`/stocks/${tickerOfRow}`, function (deletedRowList) {
+        console.log(deletedRowList);
+        rowOfDeleteButton.remove();
+    })
 }
 
 showMainTable();

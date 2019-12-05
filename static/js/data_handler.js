@@ -32,5 +32,13 @@ export let dataHandler = {
         this._api_get('/users', response => {
             callback(response);
         })
+    },
+
+    _api_delete: function(url, callback) {
+        fetch(url, {
+            method: 'DELETE',
+            credentials: 'same-origin'
+        }).then(response => response.json())
+            .then(json_response => callback(json_response));
     }
 };
