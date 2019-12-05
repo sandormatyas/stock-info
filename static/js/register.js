@@ -21,8 +21,10 @@ function checkAvailability(event) {
 }
 
 function usernameCheck() {
+    const userData = document.querySelector('#user-data');
+    if (userData == null) {
     const usernameInput = document.querySelector('#register-username');
-    usernameInput.addEventListener('blur', checkAvailability)
+    usernameInput.addEventListener('blur', checkAvailability)}
 }
 
 usernameCheck();

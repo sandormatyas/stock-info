@@ -103,10 +103,16 @@ def process_raw_stock_details(details, news, charts):
             'source': title['source_name'],
             'published': title['date']
         }
+        if processed_title['sentiment'] == 'Positive':
+            processed_title['sentiment'] = 'fa-smile'
+        elif processed_title['sentiment'] == 'Negative':
+            processed_title['sentiment'] = 'fa-frown'
+        else:
+            processed_title['sentiment'] = 'fa-meh'
+
         processed_news.append(processed_title)
 
     processed_chart_data = process_chart_data(charts)
-
     return [processed_details, processed_news, processed_chart_data]
 
 

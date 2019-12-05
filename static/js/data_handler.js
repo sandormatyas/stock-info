@@ -39,7 +39,10 @@ export let dataHandler = {
     },
 
     getStock: function (stockTicker, callback) {
-        // example
+        //gets all required data for a stock
+        this._api_get(`/stocks/${stockTicker}`, stockData =>{
+            callback(stockData);
+        })
     },
     getUsers: function (callback) {
         //gets existing usernames
