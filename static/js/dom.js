@@ -10,6 +10,7 @@ export let tableLoader = {
 
         dataHandler._api_get('/stocks', function (data) {
             for (let row of data) {
+                tableLoader.insertTickerIntoHeader(row);
 
                 //decide which arrow should we use
                 if (row['trends']['longTermTrend'] === 'UP') {
@@ -41,6 +42,15 @@ export let tableLoader = {
                 ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))
             }
         });
+    },
+    insertTickerIntoHeader: function (dataRow) {
+        const dropDownTemplate = document.getElementById('dropdown-items-template');
+        const menuOption = document.importNode(dropDownTemplate.content, true);
+
+        menuOption.querySelector('.option').textContent = dataRow.ticker;
+        menuOption.querySelector('.option').dataset.ticker = dataRow.ticker;
+
+        document.querySelector('#dropdown-menu').appendChild(menuOption);
     }
 };
 

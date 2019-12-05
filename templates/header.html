@@ -10,11 +10,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Overview
+                    My Stonks
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Show stocks</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
                 </div>
             </li>
         </ul>
@@ -31,3 +29,6 @@
         {% endif %}
     </div>
 </nav>
+<template id="dropdown-items-template">
+    <a href="#" class="option dropdown-item"></a>
+</template>
