@@ -2,7 +2,6 @@ import {dataHandler} from "./data_handler.js";
 
 export let stockLoader = {
     loadStockInfo: function (event) {
-        //clear the page
         const ticker = event.currentTarget.dataset.ticker;
         dataHandler.getStock(ticker, stockData => {
             const stockPage = this.createStockTemplate(stockData);
@@ -10,6 +9,7 @@ export let stockLoader = {
             page.innerHTML = "";
             page.appendChild(stockPage);
             this.insertChart(stockPage, stockData[2]);
+            this.addListenerToButtons()
 
             //set back the cursor after the page is loaded
             document.querySelector('html').style.cursor='default';
@@ -26,7 +26,9 @@ export let stockLoader = {
         templateCopy.querySelector('#stock-sector').textContent = stockInfo.sector;
         templateCopy.querySelector('#stock-industry').textContent = stockInfo.industry;
         templateCopy.querySelector('#stock-website').textContent = stockInfo.website;
+        templateCopy.querySelector('#stock-website').href = stockInfo.website;
         templateCopy.querySelector('#stock-employees').textContent = stockInfo.employees;
+        templateCopy.querySelector('#refresh-stock-info').dataset.ticker = stockInfo.ticker;
 
         this.insertNews(templateCopy, stockData[1]);
 
@@ -57,7 +59,8 @@ export let stockLoader = {
             var data = google.visualization.arrayToDataTable(chartData, true);
 
             var options = {
-                legend: 'none'
+                legend: 'none',
+                height: 500
             };
 
             var chart = new google.visualization.CandlestickChart(document.getElementById('chart-display'));
@@ -66,4 +69,16 @@ export let stockLoader = {
         }
 
     },
+    addListenerToButtons: function () {
+        document.querySelector('#back-to-main').addEventListener('click', this.handleBackToMain());
+        document.querySelector('#refresh-stock-info').addEventListener('click', event => this.handleRefreshInfo(event));
+    },
+    handleBackToMain: function () {
+
+    },
+    handleRefreshInfo: function (event) {
+        document.querySelector('#content').innerHTML = "";
+        console.log('refresh');
+        this.loadStockInfo(event);
+    }
 };

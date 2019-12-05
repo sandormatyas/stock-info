@@ -101,7 +101,6 @@ def process_raw_stock_details(details, news, charts):
         processed_news.append(processed_title)
 
     processed_chart_data = process_chart_data(charts)
-    print(processed_chart_data)
     return [processed_details, processed_news, processed_chart_data]
 
 
