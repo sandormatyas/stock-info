@@ -10,7 +10,10 @@ export let stockLoader = {
             page.innerHTML = "";
             page.appendChild(stockPage);
             this.insertChart(stockPage, stockData[2]);
-            this.addListenerToButtons()
+            this.addListenerToButtons();
+
+            //set back the cursor after the page is loaded
+            document.querySelector('html').style.cursor='default';
         })
     },
     createStockTemplate: function (stockData) {
