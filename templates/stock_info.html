@@ -1,11 +1,9 @@
 <template id="stock-info-template">
     <div class="container">
-        <div id="header" class="row justify-content-between">
-            <div class="col-2">
-                <a href="#">Back</a>
-            </div>
-            <div class="col-2">
-                Refresh
+        <div id="header" class="row justify-content-end">
+            <div class="nav-buttons">
+            <button type="button" class="btn btn-outline-secondary"><i class="fas fa-caret-left"> Back</i></button>
+            <button type="button" class="btn btn-outline-primary"><i class="fa fa-sync"> Refresh</i></button>
             </div>
         </div>
         <div id="stock-details" class="row mb-5 pt-2 bg-light border border-primary rounded">
@@ -28,8 +26,11 @@
                 <div class="row overflow-auto"><div id="stock-news" class="col"></div></div>
             </div>
         </div>
-        <div class="row">
-            <div id="chart-display" class="col"></div>
+        <div class="row mb-5 bg-white border border-primary rounded p-2">
+            <div class="col">
+            <div class="row"><div class="col"><h2>Chart title</h2></div></div>
+            <div class="row"><div id="chart-display" class="col"></div></div>
+            </div>
         </div>
     </div>
 </template>

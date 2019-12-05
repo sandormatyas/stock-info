@@ -54,7 +54,8 @@ export let stockLoader = {
             var data = google.visualization.arrayToDataTable(chartData, true);
 
             var options = {
-                legend: 'none'
+                legend: 'none',
+                height: 500
             };
 
             var chart = new google.visualization.CandlestickChart(document.getElementById('chart-display'));
