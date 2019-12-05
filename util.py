@@ -49,7 +49,7 @@ def process_raw_quotes_data(data):
                 processed_quotes[-1]["trends"][key] = "fas fa-angle-double-down"
 
             else:
-                processed_quotes["trends"][key] = "fas fa-minus"
+                processed_quotes[-1]["trends"][key] = "fas fa-minus"
 
     return processed_quotes
 
@@ -123,3 +123,13 @@ def process_chart_data(data):
         processed_chart_data.append([t, l, o, c, h])
 
     return processed_chart_data
+
+
+def get_autocomplete_options(search):
+    params = {
+        "region": "US",
+        "lang": "en",
+        "query": search
+    }
+
+    return connection_api.get_autocomplete(params)

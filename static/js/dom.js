@@ -37,6 +37,17 @@ function deleteRow(tickerOfRow, rowOfDeleteButton) {
     })
 }
 
+function inputHandler() {
+    let inputField = document.getElementById('stockSearch');
+
+}
+function getAutoSearchOptions(search, callback) {
+    let url = `/stocks?search=${search}`;
+    dataHandler._api_get(`/stocks?search=${search}`, function (json) {
+        callback(json)
+    })
+}
+
 
 function modifyRowData(tickerData) {
     let tickerRow = document.getElementsByClassName(`${tickerData['ticker']}`);
@@ -66,7 +77,7 @@ function modifyRowData(tickerData) {
 
     // updates market and local time
     let marketLocalTime = tickerRow[0].getElementsByClassName('market-local-time');
-    marketLocalTime[0].innerHTML = `${tickerData['mkt_time']}` + "/<br>" + `${tickerData['local_time']}`;
+    marketLocalTime[0].innerHTML = `${tickerData['mkt_time']}` + " /<br> " + `${tickerData['local_time']}`;
 
     // updates market status
     let marketStatus = tickerRow[0].getElementsByClassName('status');
