@@ -36,11 +36,14 @@ export let tableLoader = {
                 let renderedTemplate = compiledTemplate(row);
                 document.querySelector("tbody").insertAdjacentHTML("beforeend", renderedTemplate);
             }
-                const tickers = document.querySelectorAll('.ticker');
-                for (const ticker of tickers){
-                ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))}
+            const tickers = document.querySelectorAll('.ticker');
+            for (const ticker of tickers) {
+                ticker.addEventListener('click', (event) => stockLoader.loadStockInfo(event))
+            }
         });
     }
 };
 
-tableLoader.showMainTable();
+if (document.getElementById('user-data') != null) {
+    tableLoader.showMainTable();
+}
