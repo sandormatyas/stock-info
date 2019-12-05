@@ -94,10 +94,12 @@ body {
     font-family: sans-serif;
     margin-top: 5px;
     border-radius: 5px;
-
 }
 .ui-autocomplete:hover {
     z-index:2150000000;
     cursor: pointer;
+}
+.ui-helper-hidden-accessible {
+    display: none;
 }
 
