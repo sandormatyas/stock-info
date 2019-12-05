@@ -1,0 +1,11 @@
+.hidden {
+    display: none;
+}
+
+#news {
+    background-color: #c8cdd8;
+}
+
+#stock-news {
+    height: 330px;
+}
