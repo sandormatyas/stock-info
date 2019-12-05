@@ -55,7 +55,7 @@ export let stockLoader = {
 
             var options = {
                 legend: 'none'
-            }
+            };
 
             var chart = new google.visualization.CandlestickChart(document.getElementById('chart-display'));
 
