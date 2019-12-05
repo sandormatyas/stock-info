@@ -24,6 +24,12 @@ export let dataHandler = {
         .then(json_response => callback(json_response));
 
     },
+    getStocks: function(callback) {
+      //gets all stocks and their data
+      this._api_get('/stocks', stockData => {
+          callback(stockData);
+      })
+    },
     getStock: function (stockTicker, callback) {
         //gets all required data for a stock
         this._api_get(`/stocks/${stockTicker}`, stockData =>{
