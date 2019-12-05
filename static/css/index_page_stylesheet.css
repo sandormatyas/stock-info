@@ -41,7 +41,7 @@ th[rowspan="2"] {
 }
 
 .bootstrap-table {
-    width: 80%;
+    width: 60%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -49,10 +49,31 @@ th[rowspan="2"] {
 
 body {
     background-image: url("pet_project_background.jpg");
+    margin-top: 200px;
 }
 
 #chart_div {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.fas.fa-angle-double-up {
+    color: forestgreen;
+    font-size: 30px;
+}
+
+.fas.fa-angle-double-down {
+    color: red;
+    font-size: 30px;
+}
+
+.time {
+    font-size: small;
+}
+.nav-buttons {
+    margin: 10px 0
+}
+.nav-buttons {
+    text-align: right;
 }
