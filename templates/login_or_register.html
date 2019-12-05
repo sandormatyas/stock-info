@@ -3,17 +3,18 @@
         <div id="login-form" class="col-5 mt-3 border border-primary rounded">
             <h2 class="text-center mt-2">Log in:</h2>
             <form action="/login" method="post">
-                <input class="mb-1" id="username" name="username" type="text" placeholder="Username"><br>
-                <input class="mb-1" id="password" name="password" type="password" required placeholder="Password"><br>
-                <button type="submit" class="btn btn-outline-primary mb-2">Log in</button>
+                <input class="mb-1" id="login-username" name="username" type="text" placeholder="Username"><br>
+                <input class="mb-1" id="login-password" name="password" type="password" required placeholder="Password"><br>
+                <button id="login-button" type="submit" class="btn btn-primary mb-2">Log in</button>
             </form>
         </div>
         <div id="register-form" class="col-5 mt-3 border border-primary rounded">
             <h2 class="text-center mt-2">Register:</h2>
             <form action="/register" method="post">
-                <input class="mb-1" id="username" name="username" type="text" placeholder="Username"><br>
-                <input class="mb-1" id="password" name="password" type="password" required placeholder="Password"><br>
-                <button type="submit" class="btn btn-outline-secondary mb-2">Register</button>
+                <input class="mb-1" id="register-username" name="username" type="text" placeholder="Username"><br>
+                <p id="username-error" class="hidden"></p>
+                <input class="mb-1" id="register-password" name="password" type="password" required placeholder="Password"><br>
+                <button id="register-button" type="submit" class="btn btn-warning mb-2">Register</button>
             </form>
         </div>
     </div>

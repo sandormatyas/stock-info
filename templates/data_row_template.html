@@ -1,0 +1,17 @@
+{% raw %}
+<script id="data-row-template" type="text/x-handlebars-template">
+    <tr>
+        <td><strong>{{ticker}}<strong></td>
+        <td>{{name}}</td>
+        <td><strong>{{actual_price}}</strong></td>
+        <td><strong>{{daily_price_change}}</strong></td>
+        <td><strong>{{daily_price_rel_change}}</strong></td>
+        <td><i class="{{trends.shortTermTrend}}"></i></td>
+        <td><i class="{{trends.midTermTrend}}"></i></td>
+        <td><i class="{{trends.longTermTrend}}"></i></td>
+        <td class="time">{{mkt_time}} /<br> {{ local_time }} </td>
+        <td class="time">{{market_status}}</td>
+        <td><button type="button" class="btn btn-outline-warning border-0"><i class="fa fa-trash"></i></button></td>
+    </tr>
+</script>
+{% endraw %}
