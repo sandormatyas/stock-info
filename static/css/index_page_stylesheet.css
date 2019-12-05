@@ -67,6 +67,10 @@ body {
     color: red;
     font-size: 30px;
 }
+.fas.fa-minus {
+    color: blue;
+    font-size: 30px;
+}
 
 .time {
     font-size: small;
@@ -76,4 +80,10 @@ body {
 }
 .nav-buttons {
     text-align: right;
+}
+.increase {
+    color: forestgreen;
+}
+.decrease {
+    color: red
 }
