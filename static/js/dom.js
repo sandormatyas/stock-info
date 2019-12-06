@@ -9,6 +9,7 @@ export let tableLoader = {
         document.querySelector('#content').insertAdjacentHTML('beforeend', renderedTemplate);
 
         dataHandler._api_get('/stocks', function (data) {
+            document.querySelector('#dropdown-menu').innerHTML = "";
             for (let row of data) {
                 tableLoader.insertTickerIntoHeader(row);
                 let rowTemplate = document.getElementById('data-row-template').innerHTML;
