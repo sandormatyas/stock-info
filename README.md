@@ -9,4 +9,4 @@ The website allows users to:
   * add them to a watchlist
   * when selecting a stock it shows info about the stock, the company, the past price and news
 
-(It uses multiple APIs and the API keys were removed)
+It uses multiple APIs like yahoo stocks, and stock news and more.
